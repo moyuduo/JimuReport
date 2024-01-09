@@ -20,9 +20,11 @@ public class JimuReportTokenService implements JmReportTokenServiceI {
      */
     @Override
     public String getToken(HttpServletRequest request) {
-         //System.out.println("---------call---------getToken-----------------------");
+         System.out.println("---------call---------getToken-----------------------");
         //return TokenUtils.getTokenByRequest(request);
-        return "123456";
+        String parameter = request.getParameter("token");
+        String header = request.getHeader("token");
+        return parameter != null ? parameter : header;
     }
 
     /**
@@ -74,9 +76,10 @@ public class JimuReportTokenService implements JmReportTokenServiceI {
      */
     @Override
     public Boolean verifyToken(String token) {
-        System.out.println("---------verify-----Token---------------");
+        System.out.println("---------verify-----Token:"+token+"---------------");
         //return TokenUtils.verifyToken(token, sysBaseAPI, redisUtil);
-        return true;
+        // return token == "abc123";
+        return "abc123".equals(token);
     }
 
     /**
